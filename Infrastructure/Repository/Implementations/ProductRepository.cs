@@ -2,23 +2,25 @@
 //using Core.Entities;
 //using Microsoft.EntityFrameworkCore;
 //using Core.Interfaces;
+//using System;
 
 //namespace Infrastructure.Repository
 //{
 //    public class ProductRepository : IProductRepository
 //    {
-//    private readonly StoreContext _dbContext;
+//        private readonly StoreContext _dbContext;
 //        public ProductRepository(StoreContext dbContext)
 //        {
 //            _dbContext = dbContext;
 //        }
-        
-//        public async Task<IReadOnlyList<Product>> GetAllProductsAsync()
+
+//        public async Task<IReadOnlyList<Product>> GetAllProductsAsync(int? brandId, int? typeId)
 //        {
-//             return await _dbContext.Products
-//             .Include(p => p.ProductBrand)
-//             .Include(p => p.ProductType)
-//             .ToListAsync();
+//            return await _dbContext.Products
+//            .OrderBy((x=>(true)))
+//            .Include(p => p.ProductBrand)
+//            .Include(p => p.ProductType)
+//            .ToListAsync();
 //        }
 
 //        public async Task<IReadOnlyList<ProductBrand>> GetAllProductBrandsAsync()

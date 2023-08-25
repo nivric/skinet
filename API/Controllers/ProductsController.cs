@@ -7,6 +7,7 @@ using Core.Interfaces;
 using Core.Specifications;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 using System.Net;
 
 namespace API.Controllers
@@ -31,9 +32,9 @@ namespace API.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetProducts([FromQuery] string sort)
+        public async Task<IActionResult> GetProducts([FromQuery] string sort, [FromQuery] int? brandId, [FromQuery] int? typeId)
         {
-            var spec = new ProductWithProductBrandAndTypeSpecification(sort);
+            var spec = new ProductWithProductBrandAndTypeSpecification(sort, brandId, typeId);
             var products = await _productsRepo.GetItemsWithSpecAsync(spec);
             var productsDto = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
             return Ok(productsDto);

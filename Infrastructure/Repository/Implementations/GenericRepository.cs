@@ -31,6 +31,11 @@ namespace Infrastructure.Repository.Implementations
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
+        public async Task<int> GetItemsCountAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecifications(spec).CountAsync();
+        }
+
         public async Task<IReadOnlyList<T>> GetItemsWithSpecAsync(ISpecification<T> spec)
         {
             return await ApplySpecifications(spec).ToListAsync();

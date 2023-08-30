@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace Core.Specifications
 {
@@ -16,6 +11,12 @@ namespace Core.Specifications
         public Expression<Func<T, object>> OrderByCriteria { get; private set; }
 
         public Expression<Func<T, object>> OrderByDescCriteria { get; private set; }
+
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool IsPagingEnabled { get; private set; }
 
         public BaseSpecification()
         {
@@ -40,6 +41,13 @@ namespace Core.Specifications
         protected void AddOrderDescBy(Expression<Func<T, object>> orderDescExpression)
         {
             OrderByDescCriteria = orderDescExpression;
+        }
+
+        protected void ApplyPaging(int take, int skip)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnabled = true;
         }
     }
 }

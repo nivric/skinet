@@ -1,11 +1,6 @@
-using API.ApplicationServicesExtensions;
-using API.Errors;
+using API.Extensions;
 using API.Middleware;
-using Core.Interfaces;
 using Infrastructure.Data;
-using Infrastructure.Repository;
-using Infrastructure.Repository.Implementations;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +21,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

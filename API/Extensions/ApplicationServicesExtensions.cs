@@ -5,7 +5,7 @@ using Infrastructure.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.ApplicationServicesExtensions
+namespace API.Extensions
 {
     public static class ApplicationServicesExtensions
     {

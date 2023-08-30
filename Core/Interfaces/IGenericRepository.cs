@@ -9,5 +9,7 @@ namespace Core.Interfaces
         public Task<T> GetItemsByIdAsync(int id);
         public Task<IReadOnlyList<T>> GetItemsWithSpecAsync(ISpecification<T> spec);
         public Task<T> FindItemWithSpecAsync(int id, ISpecification<T> spec);
+
+        public Task<int> GetItemsCountAsync(ISpecification<T> spec);
     }
 }

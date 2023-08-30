@@ -22,9 +22,13 @@ namespace Infrastructure.Repository.Implementations
             {
                 query = query.OrderBy(spec.OrderByCriteria);
             }
-            else if(spec.OrderByDescCriteria!= null)
+            if(spec.OrderByDescCriteria!= null)
             {
                 query = query.OrderByDescending(spec.OrderByDescCriteria);
+            }
+            if(spec.IsPagingEnabled)
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take);
             }
             query = spec.Includes.Aggregate(query,(current, include) => current.Include(include));
             return query;
